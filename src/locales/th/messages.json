@@ -1,7 +1,8 @@
 {
 	"sections": {
 		"Home": {
-			"title": "สวัสดี ผมชื่อ Psych",
+			"title": "หน้าแรก",
+               "name": "สวัสดี ผมชื่อ Suttawit",
 			"subtitle": "นักพัฒนาเว็บไซต์ที่ชอบ 3D และการเคลื่อนไหว",
 			"content": {
 				"description": "ผมสร้าง ประสบการณ์เว็บไซต์แบบ immersive ด้วย Three.js, GSAP และ React",

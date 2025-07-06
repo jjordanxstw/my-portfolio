@@ -13,19 +13,23 @@ interface NavbarProps {
 export default function Navbar({ sections, activeSection }: NavbarProps) {
 	return (
 		<nav
-			className={`${AveriaSerifLibre.className} fixed inset-x-0 top-2 z-5000 mx-auto mt-1.5 flex w-full max-w-7xl items-center justify-between px-6 py-3`}
+			className={`${AveriaSerifLibre.className} fixed inset-x-0 top-2 z-5000 mx-auto mt-1.5 flex w-full max-w-7xl items-center justify-between px-6 py-3 flex-nowrap`}
 		>
-			<DropdownMenu
-				title="Suttawit"
-				icon="/dan1.jpg"
-				content={profileContents}
-			/>
+			<div className="flex-shrink-0">
+				<DropdownMenu
+					title="Suttawit"
+					icon="/dan1.jpg"
+					content={profileContents}
+                         sections={sections}
+                         activeSection={activeSection}
+				/>
+			</div>
 
-			<nav className="max-w-max flex-1 items-center justify-center absolute top-1/2 left-1/2 hidden w-fit -translate-x-1/2 -translate-y-1/2 rounded-full backdrop-blur-md md:flex">
-				<div style={{ position: "relative" }}>
-					<ul className="group flex-1 list-none items-center justify-center gap-2 relative hidden rounded-full border border-black/10 bg-black/5 px-2 py-1 md:flex dark:border-white/10 dark:bg-white/10">
+			<nav className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:flex">
+				<div className="flex items-center justify-center">
+					<ul className="flex list-none items-center justify-center gap-1 lg:gap-2 rounded-full border border-black/10 bg-black/5 px-2 py-1 dark:border-white/10 dark:bg-white/10">
 						{sections.map((s) => (
-							<li key={s.id} className="relative group">
+							<li key={s.id} className="relative">
 								<div
 									className={`rounded-full transition-all duration-300 ease-in-out py-1
                                              ${
@@ -37,7 +41,7 @@ export default function Navbar({ sections, activeSection }: NavbarProps) {
 								>
 									<a
 										href={`#${s.id}`}
-										className={`px-4 py-2 rounded-full transition relative`}
+										className={`px-3 lg:px-4 py-2 rounded-full transition relative text-base whitespace-nowrap`}
 									>
 										{s.id.charAt(0).toUpperCase() +
 											s.id.slice(1)}
@@ -57,7 +61,8 @@ export default function Navbar({ sections, activeSection }: NavbarProps) {
 					</ul>
 				</div>
 			</nav>
-			<div className="flex items-center gap-2">
+
+			<div className="flex items-center gap-2 flex-shrink-0">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 24 24"

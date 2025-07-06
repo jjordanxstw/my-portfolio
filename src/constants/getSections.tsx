@@ -3,7 +3,8 @@ export const getSections = (
 ) => [
 	{
 		id: "Home",
-		title: t("sections.Home.title"),
+		title: t("sections.Home.name"),
+          name: t("sections.Home.name"),
 		subtitle: t("sections.Home.subtitle"),
 		content: (
 			<>
