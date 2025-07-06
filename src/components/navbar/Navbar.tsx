@@ -2,6 +2,8 @@
 
 import LangSwitch from "@/components/switch/LanguageSwitch";
 import { AveriaSerifLibre } from "@/styles/fonts";
+import DropdownMenu from "../ui/profileExpand";
+import profileContents from "@/constants/profileContents";
 
 interface NavbarProps {
 	sections: { id: string; title: string }[];
@@ -10,8 +12,15 @@ interface NavbarProps {
 
 export default function Navbar({ sections, activeSection }: NavbarProps) {
 	return (
-		<nav className={`${AveriaSerifLibre.className} fixed inset-x-0 top-2.5 z-5000 mx-auto mt-1.5 flex w-full max-w-7xl items-center justify-between px-6 py-3 pr-4`}>
-			<h2>Front</h2>
+		<nav
+			className={`${AveriaSerifLibre.className} fixed inset-x-0 top-2 z-5000 mx-auto mt-1.5 flex w-full max-w-7xl items-center justify-between px-6 py-3`}
+		>
+			<DropdownMenu
+				title="Suttawit"
+				icon="/dan1.jpg"
+				content={profileContents}
+			/>
+
 			<nav className="max-w-max flex-1 items-center justify-center absolute top-1/2 left-1/2 hidden w-fit -translate-x-1/2 -translate-y-1/2 rounded-full backdrop-blur-md md:flex">
 				<div style={{ position: "relative" }}>
 					<ul className="group flex-1 list-none items-center justify-center gap-2 relative hidden rounded-full border border-black/10 bg-black/5 px-2 py-1 md:flex dark:border-white/10 dark:bg-white/10">

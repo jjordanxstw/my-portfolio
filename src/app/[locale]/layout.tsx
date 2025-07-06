@@ -5,7 +5,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { routing } from "@/i18n/routing";
 
 export const metadata: Metadata = {
-	title: "jordan.dev",
+	title: "Jordan-Dev",
 };
 
 export function generateStaticParams() {

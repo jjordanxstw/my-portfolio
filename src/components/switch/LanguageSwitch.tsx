@@ -3,6 +3,7 @@
 import { useTransition } from "react";
 import { useRouter, usePathname, useParams } from "next/navigation";
 import Image from "next/image";
+import Loading from "../ui/loading";
 
 export default function LanguageSwitch() {
 	const router = useRouter();
@@ -57,6 +58,8 @@ export default function LanguageSwitch() {
 					/>
 				</div>
 			</div>
+
+               {isPending ? <Loading/> : null}
 		</button>
 	);
 }
