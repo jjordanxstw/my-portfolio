@@ -1,0 +1,62 @@
+{
+  "sections": {
+    "Home": {
+      "title": "Hi, I'm Psych",
+      "subtitle": "A web developer who loves 3D and motion.",
+      "content": {
+        "description": "I create immersive web experiences using Three.js, GSAP, and React.",
+        "button": "See My Work"
+      }
+    },
+    "projects": {
+      "title": "Projects",
+      "subtitle": "Here are some of my featured works.",
+      "project1": {
+        "title": "Project 1",
+        "description": "Description of project 1"
+      },
+      "project2": {
+        "title": "Project 2",
+        "description": "Description of project 2"
+      },
+      "project3": {
+        "title": "Project 3",
+        "description": "Description of project 3"
+      }
+    },
+    "interns": {
+      "title": "Internships",
+      "subtitle": "Experience from real-world work.",
+      "intern1": {
+        "title": "Internship at ABC Company",
+        "description": "Developed websites using React and connected APIs."
+      },
+      "intern2": {
+        "title": "Internship at XYZ Company",
+        "description": "Designed and developed websites using Three.js and GSAP."
+      }
+    },
+    "education": {
+      "title": "Education",
+      "subtitle": "My learning journey and achievements.",
+      "degree1": {
+        "title": "Bachelor's Degree in Computer Science",
+        "description": "ABC University"
+      },
+      "degree2": {
+        "title": "Master's Degree in Computer Science",
+        "description": "XYZ University"
+      }
+    },
+    "contact": {
+      "title": "Contact Me",
+      "subtitle": "Let’s create something great together.",
+      "form": {
+        "name": "Your Name",
+        "email": "Your Email",
+        "message": "Your Message",
+        "button": "Send Message"
+      }
+    }
+  }
+}
