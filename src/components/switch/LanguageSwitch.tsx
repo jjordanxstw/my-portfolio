@@ -1,9 +1,9 @@
 "use client";
 
-import { useTransition } from "react";
+import { useTransition, useEffect } from "react";
 import { useRouter, usePathname, useParams } from "next/navigation";
 import Image from "next/image";
-import Loading from "../ui/loading";
+import { useLoading } from "@/contexts/LoadingContext";
 
 export default function LanguageSwitch() {
 	const router = useRouter();
@@ -11,14 +11,16 @@ export default function LanguageSwitch() {
 	const params = useParams();
 	const currentLocale = params.locale as "en" | "th";
 	const [isPending, startTransition] = useTransition();
+	const { setLoading } = useLoading();
+
+	useEffect(() => {
+		setLoading(isPending);
+	}, [isPending, setLoading]);
 
 	const toggleLanguage = () => {
 		const newLocale = currentLocale === "en" ? "th" : "en";
-
 		const pathWithoutLocale = pathname.replace(`/${currentLocale}`, "");
-
 		const newPath = `/${newLocale}${pathWithoutLocale}`;
-
 		startTransition(() => {
 			router.push(newPath);
 		});
@@ -30,16 +32,11 @@ export default function LanguageSwitch() {
 			className="relative w-20 h-10 rounded-full bg-[var(--foreground)] shadow-inner flex items-center justify-between px-3 text-gray-700 font-semibold transition-all"
 			style={{
 				boxShadow:
-					"inset 4px 4px 8px #c5c5c5, inset -4px -4px 8px #ffffff",
+					"inset 4px 4px 8px #B6B09F, inset -4px -4px 8px #ffffff",
 			}}
 		>
-			<span className={`${currentLocale === "th" ? "text-black" : "opacity-50"}`}>
-				TH
-			</span>
-			<span className={`${currentLocale === "en" ? "text-black" : "opacity-50"}`}>
-				EN
-			</span>
-
+			<span className={`${currentLocale === "th" ? "text-black" : "opacity-50"}`}>TH</span>
+			<span className={`${currentLocale === "en" ? "text-black" : "opacity-50"}`}>EN</span>
 			<div
 				className={`rounded-full overflow-hidden absolute w-8 h-8 bg-white top-1 left-1 shadow-md transition-all duration-300 ease-in-out flex items-center justify-center`}
 				style={{
@@ -58,8 +55,6 @@ export default function LanguageSwitch() {
 					/>
 				</div>
 			</div>
-
-               {isPending ? <Loading/> : null}
 		</button>
 	);
 }

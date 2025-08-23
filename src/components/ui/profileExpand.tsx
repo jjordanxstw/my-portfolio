@@ -7,7 +7,6 @@ import Image from "next/image";
 
 interface NavbarItems {
 	id: string;
-	title: string;
 }
 
 interface DropdownContentItem {
@@ -24,7 +23,7 @@ interface DropdownItem {
 	activeSection?: string;
 }
 
-export default function DropdownMenu({
+export default function ProfileContents({
 	title,
 	icon,
 	content,
@@ -69,7 +68,7 @@ export default function DropdownMenu({
 								alt=""
 								width={24}
 								height={24}
-								className="w-full h-full object-cover"
+								className="w-full h-full"
 							/>
 						</div>
 					</div>
@@ -153,8 +152,7 @@ export default function DropdownMenu({
 								{sections &&
 									isMobile &&
 									sections.map((sub, i) => (
-										<a href={`#${sub.id}`}
-                                                  key={sub.id}>
+										<a href={`#${sub.id}`} key={sub.id}>
 											<motion.li
 												key={sub.id}
 												className="px-4 py-3 hover:bg-white/5 transition-all cursor-pointer flex items-center gap-3 mx-2 rounded-lg"

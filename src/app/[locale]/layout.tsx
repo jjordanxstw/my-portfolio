@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { routing } from "@/i18n/routing";
+import { LoadingProvider } from "@/contexts/LoadingContext";
+import LoadingOverlay from "@/components/LoadingOverlay";
 
 export const metadata: Metadata = {
 	title: "Jordan-Dev",
@@ -26,9 +28,12 @@ export default async function RootLayout({
 
 	return (
 		<html lang={locale} className="scroll-smooth">
-			<body className='antialiased'>
+			<body className="antialiased">
 				<NextIntlClientProvider locale={locale}>
-					{children}
+					<LoadingProvider>
+						<LoadingOverlay />
+						{children}
+					</LoadingProvider>
 				</NextIntlClientProvider>
 			</body>
 		</html>

@@ -1,67 +1,61 @@
 "use client";
-
+import useMountAnimation from "@/hooks/mountAnimation";
+import NavbarSectionList from "@/components/navbar/NavbarSection";
 import LangSwitch from "@/components/switch/LanguageSwitch";
 import { AveriaSerifLibre } from "@/styles/fonts";
-import DropdownMenu from "../ui/profileExpand";
+import ProfileContents from "../ui/profileExpand";
 import profileContents from "@/constants/profileContents";
+import { useState } from "react";
 
 interface NavbarProps {
-	sections: { id: string; title: string }[];
+	sections: { id: string }[];
 	activeSection: string;
 }
 
 export default function Navbar({ sections, activeSection }: NavbarProps) {
+	const mounted = useMountAnimation();
+	const [clipped, setClipped] = useState(true);
+
 	return (
 		<nav
-			className={`${AveriaSerifLibre.className} fixed inset-x-0 top-2 z-5000 mx-auto mt-1.5 flex w-full max-w-7xl items-center justify-between px-6 py-3 flex-nowrap`}
+			className={`
+        ${AveriaSerifLibre.className}
+        fixed inset-x-0 top-2 z-5000 mx-auto mt-1.5 flex w-full max-w-5xl items-center justify-between px-6 py-3 flex-nowrap
+        transition-all duration-700 ease-[cubic-bezier(0.77,0,0.175,1)]
+        origin-center
+        ${mounted ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"}
+      `}
+			style={{
+				opacity: mounted ? 1 : 0,
+				clipPath: clipped
+					? mounted
+						? "inset(0% 0% 0% 0%)"
+						: "inset(0% 50% 0% 50%)"
+					: "none",
+				transformOrigin: "center",
+				overflow: "visible",
+			}}
+			onTransitionEnd={(e) => {
+				if (e.propertyName === "clip-path") setClipped(false);
+			}}
 		>
 			<div className="flex-shrink-0">
-				<DropdownMenu
+				<ProfileContents
 					title="Suttawit"
 					icon="/dan1.jpg"
 					content={profileContents}
-                         sections={sections}
-                         activeSection={activeSection}
+					sections={sections}
+					activeSection={activeSection}
 				/>
 			</div>
-
 			<nav className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:flex">
 				<div className="flex items-center justify-center">
-					<ul className="flex list-none items-center justify-center gap-1 lg:gap-2 rounded-full border border-black/10 bg-black/5 px-2 py-1 dark:border-white/10 dark:bg-white/10">
-						{sections.map((s) => (
-							<li key={s.id} className="relative">
-								<div
-									className={`rounded-full transition-all duration-300 ease-in-out py-1
-                                             ${
-													activeSection === s.id
-														? "bg-white/10"
-														: "bg-transparent"
-												}
-                                        `}
-								>
-									<a
-										href={`#${s.id}`}
-										className={`px-3 lg:px-4 py-2 rounded-full transition relative text-base whitespace-nowrap`}
-									>
-										{s.id.charAt(0).toUpperCase() +
-											s.id.slice(1)}
-										<span className="absolute left-1/2 top-[-8px] transform -translate-x-1/2 h-[4px] w-[32px] overflow-visible pointer-events-none">
-											<span
-												className={`block h-full w-full bg-[var(--foreground)] transition-transform duration-300 ease-in-out origin-center rounded-t-xl shadow-[rgba(255,255,255,0.8)] ${
-													activeSection === s.id
-														? "scale-x-100 opacity-100 shadow-[0_0_12px_#ffffff,0_0_24px_#ffffff,0_0_40px_#ffffff]"
-														: "scale-x-0"
-												}`}
-											/>
-										</span>
-									</a>
-								</div>
-							</li>
-						))}
-					</ul>
+					<NavbarSectionList
+						sections={sections}
+						activeSection={activeSection}
+					/>
 				</div>
 			</nav>
-
 			<div className="flex items-center gap-2 flex-shrink-0">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
