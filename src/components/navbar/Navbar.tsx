@@ -74,7 +74,8 @@ export default function Navbar({ sections, activeSection }: NavbarProps) {
 					{/* Desktop Resume Button */}
 					<a
 						href="/resume.pdf"
-						download
+						target="_blank"
+						rel="noopener noreferrer"
 						className="hidden lg:flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full transition-all duration-200 hover:scale-105 border border-white/20 hover:border-white/40"
 						style={{
 							transitionTimingFunction: "cubic-bezier(0.34, 1.56, 0.64, 1)",
@@ -194,7 +195,8 @@ export default function Navbar({ sections, activeSection }: NavbarProps) {
 								{/* Resume Button */}
 								<a
 									href="/resume.pdf"
-									download
+									target="_blank"
+									rel="noopener noreferrer"
 									className="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-lg transition-all duration-200 hover:scale-105 border border-white/20 hover:border-white/40"
 									style={{
 										transitionTimingFunction: "cubic-bezier(0.34, 1.56, 0.64, 1)",
@@ -216,7 +218,7 @@ export default function Navbar({ sections, activeSection }: NavbarProps) {
 										<polyline points="7 10 12 15 17 10" />
 										<line x1="12" y1="15" x2="12" y2="3" />
 									</svg>
-									<span className="font-medium">Download Resume</span>
+									<span className="font-medium">View Resume</span>
 								</a>
 							</div>
 						</div>
