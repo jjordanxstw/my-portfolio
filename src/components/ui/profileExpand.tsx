@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, ChevronDownIcon, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronDownIcon } from "lucide-react";
 import Image from "next/image";
 
 interface NavbarItems {
@@ -13,6 +13,7 @@ interface DropdownContentItem {
 	content: string;
 	icon?: React.ReactNode;
 	url?: string;
+	download?: boolean;
 }
 
 interface DropdownItem {
@@ -124,7 +125,7 @@ export default function ProfileContents({
 					<>
 						<div className="absolute top-full left-0 right-0 h-2 bg-transparent z-40" />
 						<motion.div
-							className="absolute top-full left-0 right-0 mt-2 backdrop-blur-md overflow-hidden z-50 rounded-xl shadow-2xl border border-white/10"
+							className="absolute top-full left-0 right-0 mt-2 bg-[#1a1a1a] overflow-hidden z-50 rounded-xl shadow-2xl border border-white/20"
 							initial={{
 								maxHeight: 0,
 								opacity: 0,
@@ -183,43 +184,72 @@ export default function ProfileContents({
 										</a>
 									))}
 								{content.map((sub, i) => (
-									<motion.li
-										key={i}
-										className="px-4 py-3 hover:bg-white/5 transition-all cursor-pointer flex items-center gap-3 mx-2 rounded-lg"
-										initial={{ opacity: 0, x: -30 }}
-										animate={{
-											opacity: 1,
-											x: 0,
-										}}
-										transition={{
-											duration: i * 0.05,
-											delay: 0.05,
-											ease: "easeOut",
-										}}
-										whileHover={{
-											backgroundColor:
-												"rgba(255,255,255,0.1)",
-											paddingLeft: "20px",
-										}}
-										onClick={() => {
-											if (sub.url) {
-												window.open(
-													sub.url,
-													"_blank",
-													"noopener,noreferrer"
-												);
-											}
-										}}
-									>
-										<span className="text-white/90 font-medium flex items-center">
-											{sub.icon && (
-												<span className="mr-2">
-													{sub.icon}
+									sub.url ? (
+										<a
+											key={i}
+											href={sub.url}
+											target={sub.download ? undefined : "_blank"}
+											rel={sub.download ? undefined : "noopener noreferrer"}
+											download={sub.download}
+										>
+											<motion.li
+												className="px-4 py-3 hover:bg-white/5 transition-all cursor-pointer flex items-center gap-3 mx-2 rounded-lg"
+												initial={{ opacity: 0, x: -30 }}
+												animate={{
+													opacity: 1,
+													x: 0,
+												}}
+												transition={{
+													duration: i * 0.05,
+													delay: 0.05,
+													ease: "easeOut",
+												}}
+												whileHover={{
+													backgroundColor:
+														"rgba(255,255,255,0.1)",
+													paddingLeft: "20px",
+												}}
+											>
+												<span className="text-white/90 font-medium flex items-center">
+													{sub.icon && (
+														<span className="mr-2">
+															{sub.icon}
+														</span>
+													)}
+													{sub.content}
 												</span>
-											)}
-											{sub.content}
-										</span>
-									</motion.li>
+											</motion.li>
+										</a>
+									) : (
+										<motion.li
+											key={i}
+											className="px-4 py-3 hover:bg-white/5 transition-all cursor-pointer flex items-center gap-3 mx-2 rounded-lg"
+											initial={{ opacity: 0, x: -30 }}
+											animate={{
+												opacity: 1,
+												x: 0,
+											}}
+											transition={{
+												duration: i * 0.05,
+												delay: 0.05,
+												ease: "easeOut",
+											}}
+											whileHover={{
+												backgroundColor:
+													"rgba(255,255,255,0.1)",
+												paddingLeft: "20px",
+											}}
+										>
+											<span className="text-white/90 font-medium flex items-center">
+												{sub.icon && (
+													<span className="mr-2">
+														{sub.icon}
+													</span>
+												)}
+												{sub.content}
+											</span>
+										</motion.li>
+									)
 								))}
 							</ul>
 						</motion.div>
